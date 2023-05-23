@@ -81,9 +81,15 @@ class Calendar
 
     }
 
-    public function createHtmlElement(string $htmlTag, array $attributesArr)
+    public function createHtmlElement(string $htmlTag, array $attributesArr = []): DOMElement
     {
-        $nodeObj = new DOMElement($htmlTag);
-        $htmlElement = $nodeObj->createElement()
+        $nodeObj = new DOMDocument('0.1', 'iso-8859-1');
+        $htmlElement = $nodeObj->createElement($htmlTag);
+
+        foreach ($attributesArr as $attributeName => $attributeValue) {
+            $htmlElement->setAttribute($attributeName, $attributeValue);            
+        }
+
+        return $htmlElement;
     }
 }
