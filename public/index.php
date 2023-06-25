@@ -61,10 +61,33 @@ $calendar = new Core\Calendar($currentYear);
         </nav>
     </header>
     
+<<<<<<< HEAD
     <main class="container">
         <!-- Calendar start here -->
         <?= $calendar; ?>
         <!-- Calendar end here -->
+=======
+    <main>
+        <section>
+            <header>
+                
+                <fielset>
+                    <legend>Create an event</legend>
+                    <form action="">
+                        <input type="text" name="event" id="">
+                        <input type="date" name="scheduled_at" id="">
+                        <input type="submit" value="Create an event">
+                    </form>
+                </fielset>
+            </header>
+
+            <?= $calendar; ?>
+
+            
+
+            
+        </section>
+>>>>>>> 1f56c35c9e5452b30f1b90b015328061971111a0
     </main>
 
     <footer>
