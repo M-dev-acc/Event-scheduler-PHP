@@ -9,7 +9,7 @@ class Database
     /**
      * Initialize database driver
      * 
-     * @var 
+     * @var PDO $dbDriver
      */
     private $dbDriver = null;
 

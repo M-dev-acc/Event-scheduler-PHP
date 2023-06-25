@@ -1,4 +1,8 @@
 <?php
+namespace Core;
+
+use DateTime;
+use DateTimeZone;
 
 class DateTimeHelper
 {
@@ -11,7 +15,7 @@ class DateTimeHelper
      * @param string $timezone
      * @return DateTime
      */
-    private function initialze(string $dateTimeStr, string $timezone = "Asia/Calcutta"): DateTime
+    public function initialze(string $dateTimeStr, string $timezone = "Asia/Calcutta"): DateTime
     {
         $timezoneObj = new DateTimeZone($timezone);
         $dateObj = new DateTime($dateTimeStr, $timezoneObj);
@@ -39,12 +43,6 @@ class DateTimeHelper
     {
         $date = $this->initialze('today');
         return $date;
-    }
-
-    public function week(): mixed
-    {
-        $date = $this->today();
-        return $date->format('W');
     }
 
     /**
