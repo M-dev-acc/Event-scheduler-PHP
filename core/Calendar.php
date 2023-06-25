@@ -35,7 +35,6 @@ class Calendar
         $this->currentYear = $currentYear;
         $this->nodeObj = new DOMDocument('0.1', 'iso-8859-1');
         $this->daysOfweek = [
-<<<<<<< HEAD
             'Sun',
             'Mon',
             'Tue',
@@ -43,15 +42,6 @@ class Calendar
             'Thu',
             'Fri',
             'Sat'
-=======
-            'Sunday',
-            'Monday',
-            'Tuesday',
-            'Wednesday',
-            'Thursday',
-            'Friday',
-            'Saturday'
->>>>>>> 1f56c35c9e5452b30f1b90b015328061971111a0
         ];
     }
 
@@ -122,16 +112,13 @@ class Calendar
     private function daysHeadingRow(): DOMElement
     {
         $daysOfWeek = $this->daysOfweek;
-<<<<<<< HEAD
 
         $theadAttributes = [
             'class' => "calendar__month--days-heading"
         ];
 
         $thead = $this->createHtmlElement("thead", null, $theadAttributes);
-=======
-        $thead = $this->createHtmlElement("thead");
->>>>>>> 1f56c35c9e5452b30f1b90b015328061971111a0
+
         $tr = $this->createHtmlElement("tr");
 
         foreach ($daysOfWeek as $day) {
@@ -155,16 +142,12 @@ class Calendar
         $date = $dateObj->initialze("$year-$month-01");
         $getYear = $date->format("Y");
         $getMonth = $date->format("F");
-<<<<<<< HEAD
 
         $captionAttributes = [
             'class' => "calendar__month--caption",
         ];
 
         $caption = $this->createHtmlElement("caption", "$getMonth $getYear", $captionAttributes);
-=======
-        $caption = $this->createHtmlElement("caption", "$getMonth $getYear");
->>>>>>> 1f56c35c9e5452b30f1b90b015328061971111a0
 
         return $caption;
     }
@@ -182,30 +165,25 @@ class Calendar
         $dateStr = "$year-$month-01";
         $currentDate = ($year && $month) ? $dateObj->initialze($dateStr) : $dateObj->today();
 
-<<<<<<< HEAD
         $tbodyAttributes = [
             'class' => "calendar__month--dates",
         ];
 
         $tbody = $this->createHtmlElement('tbody', null, $tbodyAttributes);
-=======
-        $tbody = $this->createHtmlElement('tbody');
->>>>>>> 1f56c35c9e5452b30f1b90b015328061971111a0
+
         $tr = $this->createHtmlElement("tr");
         
         $currentWeekDayCounter = $currentDate->format('w');
 
         for ($emptyCell=1; $emptyCell < ($currentWeekDayCounter + 1); $emptyCell++) {
-<<<<<<< HEAD
+
             $tdAttributes = [
                 'class' => "calendar__month--date empty",
                 'aria-disabled' => "true",
                 'aria-invalid' => "false",
             ];
             $td = $this->createHtmlElement("td", "&nbsp;", $tdAttributes);
-=======
-            $td = $this->createHtmlElement("td", "&nbsp;");
->>>>>>> 1f56c35c9e5452b30f1b90b015328061971111a0
+
             $tr->appendChild($td);
         }
 
@@ -213,7 +191,7 @@ class Calendar
         $daysInMonth = $currentDate->format("t");
 
         while ($dayCounter <= $daysInMonth) {
-<<<<<<< HEAD
+
             $calendarDate = $dateObj->initialze($currentDate->format("Y") . "-" . $currentDate->format("m") . "-$dayCounter");
             $tdAttributes = [
                 'id' => "date" . $calendarDate->getTimestamp(),
@@ -223,9 +201,7 @@ class Calendar
             ];
 
             $td = $this->createHtmlElement("td", $dayCounter, $tdAttributes);
-=======
-            $td = $this->createHtmlElement("td", $dayCounter);
->>>>>>> 1f56c35c9e5452b30f1b90b015328061971111a0
+
             $tr->appendChild($td);
             
             $dayCounter++;
@@ -238,16 +214,14 @@ class Calendar
         }
 
         while ($currentWeekDayCounter !== 0) {
-<<<<<<< HEAD
+
             $tdAttributes = [
                 'class' => "calendar__month--date empty",
                 'aria-disabled' => "true",
                 'aria-invalid' => "false",
             ];
             $td = $this->createHtmlElement("td", "&nbsp;", $tdAttributes);
-=======
-            $td = $this->createHtmlElement("td", "&nbsp;");
->>>>>>> 1f56c35c9e5452b30f1b90b015328061971111a0
+
             $tr->appendChild($td);
             $currentWeekDayCounter = ($currentWeekDayCounter + 1) % 7;
         }
@@ -266,14 +240,11 @@ class Calendar
      */
     private function generateMonthlyCalendar(int $year, int $month): DOMElement
     {
-<<<<<<< HEAD
+
         $tableAttributes = [
             'class' => "calendar__month",
         ];
         $table = $this->createHtmlElement("table", null, $tableAttributes);
-=======
-        $table = $this->createHtmlElement("table");
->>>>>>> 1f56c35c9e5452b30f1b90b015328061971111a0
 
         $caption = $this->monthYearCaption($year, $month);
         $table->appendChild($caption);
@@ -296,15 +267,12 @@ class Calendar
      */
     private function generateYearlyCalendar(int $year = null)
     {
-<<<<<<< HEAD
         $sectionAttributes = [
             'id' => "calendar",
             'class' => "calendar",
         ];
         $calendar = $this->createHtmlElement("section", null, $sectionAttributes);
-=======
-        $calendar = $this->createHtmlElement("section", null, ['id' => "calendar"]);
->>>>>>> 1f56c35c9e5452b30f1b90b015328061971111a0
+
         $currentYear = $year ?? $this->currentYear;
         $months = $this->getDaysOfMonths();
 
