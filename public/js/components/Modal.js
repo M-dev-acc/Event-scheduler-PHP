@@ -19,6 +19,10 @@ class Modal{
      */
     initialize(modal) {
         document.body.appendChild(modal);
+        const closeBtns = modal.querySelectorAll("button[aria-label='Close']");
+        closeBtns.forEach(closeBtn => {
+            closeBtn.addEventListener('click', () => this.close());
+        });
     }
 
     /**
@@ -26,6 +30,10 @@ class Modal{
      */
     open() {
         this.modal.showModal();
+    }
+
+    close() {
+        this.modal.close();
     }
 }
 

@@ -51,7 +51,7 @@ $calendar = new Core\Calendar($currentYear);
                 </div>
             </main>
             <footer class="modal__footer">
-                <button formmethod="dialog">Close</button>
+                <button formmethod="dialog" aria-label="Close">Close</button>
             </footer>
         </dialog>
         
