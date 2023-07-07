@@ -15,13 +15,13 @@ $calendar = new Core\Calendar($currentYear);
     <title>Add Event</title>
 
     <link rel="stylesheet" href="./public/css/style.css">
-    <template id="eventFunctionalityWindow">
-        <dialog class="">
-            <header>
-                <h3>Insert date here</h3>
+    <template id="htmlTemplates">
+        <dialog id="eventsModal" class="modal">
+            <header class="modal__header">
+                <h3 class="modal__header--heading" id="modalHeading">Insert date here</h3>
             </header>
-            <main>
-                <div>
+            <main class="modal__body" id="modalContent">
+                <div id="addEventForm">
                     <fieldset>
                         <legend>Add Event</legend>
                         <input type="hidden" name="date" id="eventDateInput">
@@ -31,8 +31,8 @@ $calendar = new Core\Calendar($currentYear);
                 </div>
 
                 <div>
-                    <ul>
-                        <li>
+                    <ul id="eventsList">
+                        <li id="eventItem">
                             <span>Event 1</span>
                             <button>Edit Btn</button>
                             <button>Edit Btn</button>
@@ -50,8 +50,11 @@ $calendar = new Core\Calendar($currentYear);
                     </ul>
                 </div>
             </main>
-            <footer></footer>
-        </dialog>  
+            <footer class="modal__footer">
+                <button formmethod="dialog">Close</button>
+            </footer>
+        </dialog>
+        
     </template>
 </head>
 <body>
@@ -62,15 +65,18 @@ $calendar = new Core\Calendar($currentYear);
     </header>
     
     <main class="container">
+ 
         <!-- Calendar start here -->
         <?= $calendar; ?>
         <!-- Calendar end here -->
+
     </main>
 
     <footer>
 
     </footer>
 
-    <script src="./js/index.js"></script>
+    <script type="module" src="./js/index.js"></script>
+    
 </body>
 </html>

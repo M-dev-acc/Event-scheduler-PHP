@@ -69,7 +69,7 @@ body {
     text-align: center;
     border: 1px solid #eeeeee;
     cursor: pointer;
-    transition: outline ease-in-out 150ms;
+    transition: outline ease-in-out 7ms;
 }
 
 .calendar__month--date.empty{
