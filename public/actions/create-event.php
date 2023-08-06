@@ -1,5 +1,5 @@
 <?php
-include_once('../core/Event.php'); 
+require_once('../core/Event.php'); 
 
 if (isset($_POST)) {
     if (!empty($_REQUEST['name']) && !empty($_REQUEST['date'])) {

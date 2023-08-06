@@ -28,12 +28,24 @@ class Event
      */
     public function createEvent(array $request)
     {
-        $dbDriver = $this->db;
         $dataToStore = [
             'name' => $request['event'],
             'time' => $request['scheduled_at'],
         ];
 
-        return $dbDriver->insert('tbl_event', $dataToStore);
+        return $this->db->insert('tbl_event', $dataToStore);
+    }
+
+    function getEvents(string $date) {
+        $eventsArr = $this->db->select('tbl_event', [
+            'name',
+            'time',
+            'status',
+        ], 
+        [
+            ['time', ' LIKE ', "%$date%"],
+        ]);
+
+        return json_encode($eventsArr, JSON_PRETTY_PRINT);
     }
 }

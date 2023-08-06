@@ -1,5 +1,5 @@
 <?php
-include '../vendor/autoload.php';
+require '../vendor/autoload.php';
 ?>
 <?php
 $currentYear = date('Y');
@@ -32,29 +32,23 @@ $calendar = new Core\Calendar($currentYear);
 
                 <div>
                     <ul id="eventsList">
-                        <li id="eventItem">
-                            <span>Event 1</span>
-                            <button>Edit Btn</button>
-                            <button>Edit Btn</button>
-                        </li>
-                        <li>
-                            <span>Event 1</span>
-                            <button>Edit Btn</button>
-                            <button>Edit Btn</button>
-                        </li>
-                        <li>
-                            <span>Event 1</span>
-                            <button>Edit Btn</button>
-                            <button>Edit Btn</button>
-                        </li>
                     </ul>
                 </div>
             </main>
             <footer class="modal__footer">
-                <button formmethod="dialog" aria-label="Close">Close</button>
+                <button aria-label="Close">Cancel</button>
             </footer>
         </dialog>
         
+        <li id="eventItem">
+            <span data-child-role="event-text">Event 1</span>
+            <button data-child-role="edit-btn">Edit Btn</button>
+            <button data-child-role="delete-btn">Delete Btn</button>
+        </li>
+
+        <li id="emptyEventItem">
+            <span data-child-role="message"></span>
+        </li>
     </template>
 </head>
 <body>
@@ -63,9 +57,10 @@ $calendar = new Core\Calendar($currentYear);
             <h3>Calendar</h3>
         </nav>
     </header>
+    <pre>
     
     <main class="container">
- 
+        <ul id="eventList"></ul>
         <!-- Calendar start here -->
         <?= $calendar; ?>
         <!-- Calendar end here -->

@@ -32,8 +32,21 @@ class Modal{
         this.modal.showModal();
     }
 
+    /**
+     * Close modal
+     */
     close() {
         this.modal.close();
+    }
+
+    /**
+     * Add Html content into the modal
+     * 
+     * @param {Node} content 
+     */
+    addModalContent(content) {
+        const modalBody = this.modal.querySelector("main#modalContent");
+        modalBody.appendChild(content);
     }
 }
 

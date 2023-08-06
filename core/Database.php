@@ -17,7 +17,7 @@ class Database
      * Initialize Database driver   
      */
     public function __construct() {
-        $dbConfigVars = (object) include_once(dirname(__DIR__) . '/config/database.php');
+        $dbConfigVars = (object) require_once(dirname(__DIR__) . '/config/database.php');
            
         $dbConnectionStr = $dbConfigVars->driver
             . ':host=' . $dbConfigVars->host
@@ -56,7 +56,7 @@ class Database
             throw new PDOException($exception->getMessage(), $exception->getCode());
         }
         $this->dbDriver = null;
-        return (explode(" ", trim($query)[0] === "SELECT")) ? $prepareStatement->fetchAll() : $status;
+        return (explode(" ", trim($query)[0] === "SELECT")) ? $prepareStatement->fetchAll(PDO::FETCH_ASSOC) : $status;
     }
 
     /**
