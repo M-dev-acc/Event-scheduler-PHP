@@ -9,22 +9,10 @@ document.addEventListener('DOMContentLoaded', event => {
         dateCell.addEventListener('click', event => {
             
             // Create a new instance of the Modal class
-            const modal = new Modal("#eventsModal");
-
             const selectedDate = dateCell.dataset.date;
-            const baseURL = window.location.origin;
-            
-            // Get event list from the server
-            const ajaxHelper = new Http();
-            const getEventsData = ajaxHelper.get(`${baseURL}/Calendar/actions/show-events.php?date=${selectedDate}`);
-            
-            getEventsData.then((response) => {
-                const eventsList = new EventsList(response.data);
-                modal.addModalContent(eventsList.getEventsListHtml())
-            });
-            
+            const modal = new Modal("#eventsModal", selectedDate);
             modal.open();
         })
-    })
-
+    });
+    
 })
