@@ -1,14 +1,16 @@
 class Http {
     async initializeRequest(url, method, data = null) {
         try {
-            const response = await fetch(url, {
+            const request = {
                 method: method,
-                headers: {
-                    'Content-Type': "application/json"
-                },
-                body: (data) ? JSON.stringify(data) : null
-            });
+                // headers: {
+                //     'Content-Type': "application/json"
+                // },
+                body: data ?? null
+            };
+            const response = await fetch(url, request);
             const responseData = await response.json();
+            
             if (!responseData.status) {
                 throw new Error(responseData.error || "Request failed!");
             }
@@ -23,7 +25,7 @@ class Http {
         return await this.initializeRequest(url, 'GET');
     }
 
-    static async post(url, data) {
+    async post(url, data) {
         return await this.initializeRequest(url, 'POST', data);
     }
 

@@ -21,14 +21,15 @@ $calendar = new Core\Calendar($currentYear);
                 <h3 class="modal__header--heading" id="modalHeading">Insert date here</h3>
             </header>
             <main class="modal__body" id="modalContent">
-                <form id="addEventForm" action="./actions/create-event.php" method="post">
-                    <fieldset>
-                        <legend>Add Event</legend>
-                        <input type="hidden" name="date" id="eventDateInput">
-                        <input type="text" name="name" id="eventTextInput">
-                        <input type="submit" value="Add Event">
-                    </fieldset>
+            <fieldset>
+                <legend>Add Event</legend>
+                <form id="addEventForm" >
+                    
+                    <input type="hidden" name="date" id="eventDateInput">
+                    <input type="text" name="name" id="eventTextInput">
+                    <input type="submit" value="Add Event">
                 </form>
+            </fieldset>
 
                 <div>   
                     <ul id="eventsList">

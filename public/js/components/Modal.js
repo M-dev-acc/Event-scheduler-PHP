@@ -78,6 +78,20 @@ class Modal{
         const form = this.modal.querySelector('form#addEventForm');
         const hiddenEventDateInput = form.querySelector('#eventDateInput');
         hiddenEventDateInput.value = this.selectedDate;
+
+        form.addEventListener('submit', event => {
+            event.preventDefault();
+
+            let formData = new FormData(form);
+            const ajaxHelper = new Http();
+            const addEventPromise = ajaxHelper.post(`${this.baseURL}/Calendar/actions/create-event.php`, formData);
+            addEventPromise.then(response => {
+                form.reset();
+                alert(response.message);
+                // refresh eventlist data
+                // show success notification
+            });
+        });
     }
 }
 
