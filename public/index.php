@@ -15,26 +15,24 @@ $calendar = new Core\Calendar($currentYear);
     <title>Add Event</title>
 
     <link rel="stylesheet" href="./public/css/style.css">
+
     <template id="htmlTemplates">
         <dialog id="eventsModal" class="modal">
             <header class="modal__header">
                 <h3 class="modal__header--heading" id="modalHeading">Insert date here</h3>
             </header>
             <main class="modal__body" id="modalContent">
-            <fieldset>
-                <legend>Add Event</legend>
-                <form id="addEventForm" >
-                    
-                    <input type="hidden" name="date" id="eventDateInput">
-                    <input type="text" name="name" id="eventTextInput">
-                    <input type="submit" value="Add Event">
+                <form id="addEventForm" action="./actions/create-event.php" method="post">
+                    <fieldset>
+                        <legend>Add Event</legend>
+                        <input type="hidden" name="date" id="eventDateInput">
+                        <input type="text" name="name" id="eventTextInput">
+                        <input type="submit" value="Add Event">
+                    </fieldset>
                 </form>
-            </fieldset>
 
-                <div>   
-                    <ul id="eventsList">
-                    </ul>
-                </div>
+                <ul id="eventsList">
+                </ul>
             </main>
             <footer class="modal__footer">
                 <button aria-label="Close">Cancel</button>
@@ -57,10 +55,9 @@ $calendar = new Core\Calendar($currentYear);
             <h3>Calendar</h3>
         </nav>
     </header>
-    <pre>
     
     <main class="container">
-        <ul id="eventList"></ul>
+        
         <!-- Calendar start here -->
         <?= $calendar; ?>
         <!-- Calendar end here -->

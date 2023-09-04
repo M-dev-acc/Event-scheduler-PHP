@@ -7,18 +7,29 @@ if (isset($_POST)) {
         'message' => "Request is empty!",
     ]); 
     if (!empty($_REQUEST['name']) && !empty($_REQUEST['date'])) {
-        $event = new Core\Event();
-        $eventDataToInsert = [
-            'event' => $_REQUEST['name'],
-            'scheduled_at' => $_REQUEST['date'],
-        ];
-        $status = $event->createEvent($eventDataToInsert);
-        unset($_REQUEST);
-        
+        $dateObject = new Core\DateTimeHelper();
+        $isDateValid = $dateObject->isValidDate($_REQUEST['date']);
+
         $response = json_encode([
-            'status' => true,
-            'message' => "Event is scheduled.",
+            'status' => false,
+            'message' => "Date is not valid",
         ]);
+
+        if ($isDateValid) {
+            $event = new Core\Event();
+            $eventDataToInsert = [
+                'event' => $_REQUEST['name'],
+                'scheduled_at' => $_REQUEST['date'],
+            ];
+            $status = $event->createEvent($eventDataToInsert);
+            unset($_REQUEST);
+            
+            $response = json_encode([
+                'status' => true,
+                'message' => "Event is scheduled.",
+            ]);
+        }
+        
     }
 
     echo $response;

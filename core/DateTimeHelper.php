@@ -50,10 +50,17 @@ class DateTimeHelper
      * 
      * @return array
      */
-    function listOfTimeZone(): array
+    public function listOfTimeZone(): array
     {
         $timeZoneList = DateTimeZone::listIdentifiers(DateTimeZone::ASIA); #LIST OF TIMEZONE
         // $listAbbr = DateTimeZone::listAbbreviations();
         return $timeZoneList;
+    }
+
+    public function isValidDate(string $date) {
+        $todaysDateObject = $this->today();
+        $inputDateObject = $this->initialze($date);
+        
+        return ($todaysDateObject < $inputDateObject);
     }
 }

@@ -38,6 +38,7 @@ class Event
 
     function getEvents(string $date) {
         $eventsArr = $this->db->select('tbl_event', [
+            'id',
             'name',
             'time',
             'status',

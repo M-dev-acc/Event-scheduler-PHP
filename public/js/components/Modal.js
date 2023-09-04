@@ -29,6 +29,7 @@ class Modal{
         closeBtns.forEach(closeBtn => {
             closeBtn.addEventListener('click', () => this.close());
         });
+        this.setModalTitle(this.selectedDate);
         this.initializeAddEventForm();
         this.appendEventsListHtml();
     }
@@ -45,6 +46,17 @@ class Modal{
      */
     close() {
         this.modal.close();
+        this.modal.remove();
+    }
+
+    /**
+     * Set title of the modal
+     * 
+     * @param {Node} content 
+     */
+    setModalTitle(title) {
+        const header = this.modal.querySelector('#modalHeading');
+        header.innerText = title;
     }
 
     /**
@@ -81,15 +93,18 @@ class Modal{
 
         form.addEventListener('submit', event => {
             event.preventDefault();
-
             let formData = new FormData(form);
             const ajaxHelper = new Http();
             const addEventPromise = ajaxHelper.post(`${this.baseURL}/Calendar/actions/create-event.php`, formData);
             addEventPromise.then(response => {
                 form.reset();
                 alert(response.message);
-                // refresh eventlist data
-                // show success notification
+                
+                const modalBody = this.modal.querySelector("main#modalContent");
+                const duplicateEventLists = this.modal.querySelectorAll('#eventsList');
+                duplicateEventLists.forEach(eventsList => { eventsList.remove(); });
+
+                this.appendEventsListHtml();
             });
         });
     }

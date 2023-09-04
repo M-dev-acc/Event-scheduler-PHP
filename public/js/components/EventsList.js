@@ -12,18 +12,20 @@ class EventsList {
         const list = this.templateClones.querySelector('dialog#eventsModal #modalContent #eventsList');
 
         this.eventListsJsonObject.forEach(event => {
-            const listItem = this.createListitem(event.name)
+            const listItem = this.createListitem(event.id, event.name)
             list.appendChild(listItem);
         });
         
         return list;
     }
 
-    createListitem(eventTitle) {
+    createListitem(eventId, eventTitle) {
         
         const listItemClone = this.listItemTemplate.cloneNode(true);
         const listItemText = listItemClone.querySelector('span[data-child-role="event-text"]');
         listItemText.innerText = eventTitle;
+
+        listItemClone.setAttribute('data-href', `${this.baseURL}/Calendar/actions/get-event.php?event=${eventId}`);
 
         return listItemClone;
     }
