@@ -25,7 +25,13 @@ class EventsList {
         const listItemText = listItemClone.querySelector('span[data-child-role="event-text"]');
         listItemText.innerText = eventTitle;
 
-        listItemClone.setAttribute('data-href', `${this.baseURL}/Calendar/actions/get-event.php?event=${eventId}`);
+        listItemClone.setAttribute('data-reference', eventId);
+
+        listItemClone.addEventListener('click', event => {
+            event.preventDefault();
+
+            window.location = `${this.baseURL}/Calendar/actions/edit-event.php?event=${eventId}`
+        })
 
         return listItemClone;
     }

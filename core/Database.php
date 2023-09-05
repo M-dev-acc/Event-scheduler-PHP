@@ -55,7 +55,7 @@ class Database
         } catch (PDOException $exception) {
             throw new PDOException($exception->getMessage(), $exception->getCode());
         }
-        $this->dbDriver = null;
+        // $this->dbDriver = null;
         return (explode(" ", trim($query)[0] === "SELECT")) ? $prepareStatement->fetchAll(PDO::FETCH_ASSOC) : $status;
     }
 
@@ -173,12 +173,13 @@ class Database
             $prepareStatementParams[':where_clause_' . $whereClause[0]] = $whereClause[count($whereClause) - 1];
             
         }
-        
+        // var_dump($query, $prepareStatementParams);
+        // die;
         return $this->executeQuery($query, $prepareStatementParams);
     }
 
     /**
-     * Execute UPDATE query
+     * Execute DELETE query
      * *Delete data from the database
      * 
      * @param string $table

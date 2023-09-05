@@ -36,6 +36,12 @@ class Event
         return $this->db->insert('tbl_event', $dataToStore);
     }
 
+    /**
+     * Get collection of the events list
+     * 
+     * @param string $date
+     * @return bool|string
+     */
     function getEvents(string $date) {
         $eventsArr = $this->db->select('tbl_event', [
             'id',
@@ -48,5 +54,34 @@ class Event
         ]);
 
         return json_encode($eventsArr, JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Get single event data
+     * 
+     * @param int $eventId
+     * @return bool|string
+     */
+    function getEvent(int $eventId){
+        $eventArr = $this->db->select('tbl_event', [
+            'id',
+            'name',
+            'time',
+        ], 
+        [
+            ['id', '=', $eventId],
+        ]);
+
+        return json_encode($eventArr, JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Update Event data
+     * 
+     * @param array $request
+     * @return array|bool
+     */
+    function updateEvent(array $request, array $whereClause) {
+        return $this->db->update('tbl_event', $request, $whereClause);
     }
 }
