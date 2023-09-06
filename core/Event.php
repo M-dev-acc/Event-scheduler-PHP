@@ -85,4 +85,14 @@ class Event
     function updateEvent(array $request, array $whereClause) {
         return $this->db->update('tbl_event', $request, $whereClause);
     }
+
+    /**
+     * Delete selected event
+     * 
+     * @param int $eventId
+     * @return array|bool
+     */
+    function deleteEvent(int $eventId) {
+        return $this->db->delete('tbl_event', $eventId);
+    }
 }

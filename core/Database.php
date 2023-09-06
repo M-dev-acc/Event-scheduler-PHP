@@ -189,6 +189,6 @@ class Database
     public function delete(string $table, int $rowId)
     {
         $query = "DELETE FROM $table WHERE id=:id";
-        return $this->executeQuery($query, [':id' => $rowId]);   
+        return $this->executeQuery($query, [':id' => (int) $rowId]);   
     }
 }

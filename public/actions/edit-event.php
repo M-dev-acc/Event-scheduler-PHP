@@ -27,6 +27,11 @@ use Core\Event;
 
         ?>
 
+        <form action="./update-event.php" method="post" id="deleteEventForm">
+            <input type="hidden" name="event" value="<?= $eventDataObject->id; ?>">
+            <input type="submit" value="Delete event">
+        </form>
+
         <fieldset>
             <legend>Edit Event</legend>
             
@@ -50,18 +55,34 @@ use Core\Event;
     <script type="module">
         import Http from "../js/components/Ajax.js";
 
-        const form = document.querySelector('form#updateEventForm');
+        const baseURL = window.location.origin;
+        const ajaxHelper = new Http();
+
+        const updateEventForm = document.querySelector('form#updateEventForm');
         
-        form.addEventListener('submit', event => {
+        updateEventForm.addEventListener('submit', event => {
             event.preventDefault();
-            const baseURL = window.location.origin;
-            let formData = new FormData(form);
-            const ajaxHelper = new Http();
+            
+            let formData = new FormData(updateEventForm);
             const addEventPromise = ajaxHelper.post(`${baseURL}/Calendar/actions/update-event.php`, formData);
             addEventPromise.then(response => {
-                form.reset();
+                updateEventForm.reset();
                 alert(response.message);
                 document.location.reload(true);
+            });
+        });
+
+        const deleteEventForm = document.querySelector('form#deleteEventForm');
+        
+        deleteEventForm.addEventListener('submit', event => {
+            event.preventDefault();
+            let formData = new FormData(updateEventForm);
+            
+            const addEventPromise = ajaxHelper.post(`${baseURL}/Calendar/actions/delete-event.php`, formData);
+            addEventPromise.then(response => {
+                updateEventForm.reset();
+                alert(response.message);
+                document.location = `${baseURL}/Calendar/index.php`;
             });
         });
     </script>
