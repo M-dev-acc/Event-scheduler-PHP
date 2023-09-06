@@ -66,6 +66,7 @@ class Event
         $eventArr = $this->db->select('tbl_event', [
             'id',
             'name',
+            'status',
             'time',
         ], 
         [

@@ -28,7 +28,7 @@ if (isset($_POST)) {
         if ($eventDate === $dateToUpdate) {
             unset($eventDataObject['time']);
         }
-
+        
         if ($isDateValid) {
             $eventDataToInsert['time'] = $dateToUpdate->format('Y-m-d');
         }

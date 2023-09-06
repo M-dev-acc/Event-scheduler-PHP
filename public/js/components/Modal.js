@@ -100,13 +100,20 @@ class Modal{
                 form.reset();
                 alert(response.message);
                 
-                const modalBody = this.modal.querySelector("main#modalContent");
-                const duplicateEventLists = this.modal.querySelectorAll('#eventsList');
-                duplicateEventLists.forEach(eventsList => { eventsList.remove(); });
-
-                this.appendEventsListHtml();
+                this.refreshModalContent();
             });
         });
+    }
+
+    /**
+     * Remove modal content and re-render the data
+     */
+    refreshModalContent() {
+        const modalBody = this.modal.querySelector("main#modalContent");
+        const duplicateEventLists = this.modal.querySelectorAll('#eventsList');
+        duplicateEventLists.forEach(eventsList => { eventsList.remove(); });
+
+        this.appendEventsListHtml();
     }
 }
 

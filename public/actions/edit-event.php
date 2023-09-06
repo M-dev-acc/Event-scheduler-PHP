@@ -30,7 +30,7 @@ use Core\Event;
         <fieldset>
             <legend>Edit Event</legend>
             
-            <form action="./update-event.php" method="post">
+            <form action="./update-event.php" method="post" id="updateEventForm">
                 <input type="hidden" name="event" value="<?= $eventDataObject->id; ?>">
                 <label for="eventNameInput">Event text</label>
                 <input type="text" name="name" id="eventNameInput" value="<?= $eventDataObject->name; ?>"> <br />
@@ -47,5 +47,23 @@ use Core\Event;
         ?>
     </main>
     
+    <script type="module">
+        import Http from "../js/components/Ajax.js";
+
+        const form = document.querySelector('form#updateEventForm');
+        
+        form.addEventListener('submit', event => {
+            event.preventDefault();
+            const baseURL = window.location.origin;
+            let formData = new FormData(form);
+            const ajaxHelper = new Http();
+            const addEventPromise = ajaxHelper.post(`${baseURL}/Calendar/actions/update-event.php`, formData);
+            addEventPromise.then(response => {
+                form.reset();
+                alert(response.message);
+                document.location.reload(true);
+            });
+        });
+    </script>
 </body>
 </html>

@@ -41,6 +41,7 @@ $calendar = new Core\Calendar($currentYear);
         
         <li id="eventItem">
             <span data-child-role="event-text">Event 1</span>
+            
             <button data-child-role="mark-btn">Mark as done</button>
         </li>
 

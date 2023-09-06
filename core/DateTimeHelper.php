@@ -61,6 +61,6 @@ class DateTimeHelper
         $todaysDateObject = $this->today();
         $inputDateObject = $this->initialze($date);
         
-        return ($todaysDateObject < $inputDateObject);
+        return ($todaysDateObject <= $inputDateObject);
     }
 }
