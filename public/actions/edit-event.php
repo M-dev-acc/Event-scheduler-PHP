@@ -16,6 +16,12 @@ use Core\Event;
     <header class="navbar">
         <nav class="navbar__container">
             <h2 class="navbar__contianer--logo">Event information</h2>
+
+            <ul class="navbar__menu">
+                <li class="navbar__menu--item">
+                    <a href="./public/index.php" class="link">Home</a>
+                </li>
+            </ul>
         </nav>
     </header>
     <main class="container">
@@ -39,7 +45,9 @@ use Core\Event;
         </form>
 
         <fieldset>
-            <legend>Edit Event</legend>
+            <legend>
+                <strong>Edit Event</strong>
+            </legend>
             
             <form action="./update-event.php" method="post" id="updateEventForm">
                 <input type="hidden" name="event" value="<?= $eventDataObject->id; ?>">
