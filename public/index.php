@@ -24,10 +24,12 @@ $calendar = new Core\Calendar($currentYear);
             <main class="modal__body" id="modalContent">
                 <form id="addEventForm" action="./actions/create-event.php" method="post">
                     <fieldset>
-                        <legend>Add Event</legend>
+                        <legend>
+                            <strong>Add Event</strong>
+                        </legend>
                         <input type="hidden" name="date" id="eventDateInput">
                         <input type="text" name="name" id="eventTextInput">
-                        <input type="submit" value="Add Event">
+                        <input type="submit" value="Add Event" class="form__btn">
                     </fieldset>
                 </form>
 
@@ -51,9 +53,9 @@ $calendar = new Core\Calendar($currentYear);
     </template>
 </head>
 <body>
-    <header>
-        <nav>
-            <h3>Calendar</h3>
+    <header class="navbar">
+        <nav class="navbar__container">
+            <h2 class="navbar__contianer--logo">Calendar</h2>
         </nav>
     </header>
     

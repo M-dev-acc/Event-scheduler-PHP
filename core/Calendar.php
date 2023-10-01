@@ -2,6 +2,7 @@
 namespace Core;
 
 use Core\DateTimeHelper;
+use Core\Event;
 use DOMElement;
 use DOMDocument;
 
@@ -189,16 +190,23 @@ class Calendar
 
         $dayCounter = 1;
         $daysInMonth = $currentDate->format("t");
+        $eventObject = new Event();
 
         while ($dayCounter <= $daysInMonth) {
-
-            $calendarDate = $dateObj->initialze($currentDate->format("Y") . "-" . $currentDate->format("m") . "-$dayCounter");
+            
+            $calendarDateObject = $dateObj->initialze($currentDate->format("Y") . "-" . $currentDate->format("m") . "-$dayCounter");
+            $calendarDate = $calendarDateObject->format('Y-m-d');
+            $countEventsAssignedToDate = $eventObject->getEventsConut($calendarDate);
             $tdAttributes = [
-                'id' => "date" . $calendarDate->getTimestamp(),
-                'class' => "calendar__month--date",
-                'data-date' => $calendarDate->format('Y-m-d'),
-                'aria-disabled' => "false",
+                'id' => "date" . $calendarDateObject->getTimestamp(),
+                'class' => ($countEventsAssignedToDate > 0) ? "calendar__month--date events-assigned" : "calendar__month--date",
+                'data-date' => $calendarDate,
+                'aria-disabled' => "false",                
             ];
+
+            if ($countEventsAssignedToDate > 0) {
+                $tdAttributes['title'] = "$countEventsAssignedToDate(s) events assigned.";
+            }
 
             $td = $this->createHtmlElement("td", $dayCounter, $tdAttributes);
 

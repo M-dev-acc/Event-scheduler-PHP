@@ -17,15 +17,21 @@ class Database
      * Initialize Database driver   
      */
     public function __construct() {
-        $dbConfigVars = (object) require_once(dirname(__DIR__) . '/config/database.php');
-           
-        $dbConnectionStr = $dbConfigVars->driver
-            . ':host=' . $dbConfigVars->host
-            . ';dbname=' . $dbConfigVars->database
-            . ';charset=' . $dbConfigVars->charset;
+        // $dbConfigVars = (object) require_once(dirname(__DIR__) . '/config/database.php');
+        
+        // $dbConnectionStr = $dbConfigVars->driver
+        //     . ':host=' . $dbConfigVars->host
+        //     . ';dbname=' . $dbConfigVars->database
+        //     . ';charset=' . $dbConfigVars->charset;
+
+        $dbConnectionStr = 'mysql'
+            . ':host=127.0.0.1'
+            . ';dbname=db_event'
+            . ';charset=utf8';
 
         try {
-            $pdo = new PDO($dbConnectionStr, $dbConfigVars->username, $dbConfigVars->password);
+            // $pdo = new PDO($dbConnectionStr, $dbConfigVars->username, $dbConfigVars->password);
+            $pdo = new PDO($dbConnectionStr, 'root', "");
             
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $exception) {

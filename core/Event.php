@@ -42,7 +42,7 @@ class Event
      * @param string $date
      * @return bool|string
      */
-    function getEvents(string $date) {
+    public function getEvents(string $date) {
         $eventsArr = $this->db->select('tbl_event', [
             'id',
             'name',
@@ -62,7 +62,7 @@ class Event
      * @param int $eventId
      * @return bool|string
      */
-    function getEvent(int $eventId){
+    public function getEvent(int $eventId){
         $eventArr = $this->db->select('tbl_event', [
             'id',
             'name',
@@ -82,7 +82,7 @@ class Event
      * @param array $request
      * @return array|bool
      */
-    function updateEvent(array $request, array $whereClause) {
+    public function updateEvent(array $request, array $whereClause) {
         return $this->db->update('tbl_event', $request, $whereClause);
     }
 
@@ -92,7 +92,19 @@ class Event
      * @param int $eventId
      * @return array|bool
      */
-    function deleteEvent(int $eventId) {
+    public function deleteEvent(int $eventId) {
         return $this->db->delete('tbl_event', $eventId);
+    }
+
+    /**
+     * Check event are assigned to given date
+     * 
+     * @param string $date
+     * @return bool
+     */
+    public function getEventsConut(string $date) : int {
+        $eventsCountQuery = $this->db->executeQuery("SELECT COUNT(*) as events_count FROM tbl_event WHERE time=:date", [':date' => $date]);
+        
+        return $eventsCountQuery[0]['events_count'];
     }
 }

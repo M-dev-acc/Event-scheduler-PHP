@@ -12,6 +12,25 @@ body {
     font-size: 1em;
 }
 
+.navbar {
+    background-color: #ffffff;
+    color: white;
+    padding: 10px 20px;
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1em;
+}
+
+.navbar__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar__container--logo {
+    margin: 0;
+    font-size: 24px;
+}
+
 .container{
     margin-inline: auto;
     padding-inline: 0.938rem;
@@ -76,11 +95,176 @@ body {
     background-color: #eeeeee2a;
 }
 
+.calendar__month--date.events-assigned{
+    outline: #fb2352 1px solid;
+}
+
 .calendar__month--date[aria-disabled='false']:hover{
-    outline: 5px solid #b3c8f5;
+    outline: 5px solid #b3c8f5 ;
     color: #b3c8f5;
 }
 
 .calendar__month--date[aria-disabled='false']:active{
     outline-width: 3px;
+}
+
+dialog {
+    width: 80%;
+    max-width: 400px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+
+.modal__header {
+    text-align: left; 
+    margin-bottom: 20px;
+}
+
+
+.modal__body {
+    margin-bottom: 20px;
+}
+
+
+#addEventForm {
+    margin-bottom: 20px;
+}
+
+
+#addEventForm input[type="text"] {
+    width: 100%; 
+    padding: 10px; 
+    margin-bottom: 10px; 
+    border: 1px solid #ccc; 
+}
+
+
+#eventsList {
+    list-style-type: none;
+    padding: 0;
+}
+
+
+#eventsList li {
+    margin-bottom: 10px;
+}
+
+
+.modal__footer {
+    text-align: left; 
+}
+
+
+.form__btn, .modal__footer button {
+    background-color: #1591a5;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#eventsList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto; 
+    max-height: 200px; 
+}
+
+
+#eventsList li {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 10px; 
+    border-bottom: 1px solid #ccc; 
+}
+
+[data-child-role="event-text"] {
+    flex: 1; 
+}
+
+
+[data-child-role="mark-btn"] {
+    background-color: #10a50f;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+
+#eventsList li:first-child {
+    font-weight: bold;
+}
+
+dialog::-webkit-scrollbar {
+    width: 12px; 
+}
+
+dialog::-webkit-scrollbar-thumb {
+    background-color: #888; 
+    border-radius: 6px; 
+}
+
+dialog::-webkit-scrollbar-thumb:hover {
+    background-color: #555; 
+}
+
+
+#eventsList::-webkit-scrollbar {
+    width: 8px; 
+}
+
+#eventsList::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px; 
+}
+
+#eventsList::-webkit-scrollbar-thumb:hover {
+    background-color: #555; 
+}
+
+#deleteEventForm,
+#updateEventForm {
+    margin-bottom: 20px;
+}
+
+#updateEventForm {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+#updateEventForm label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+#updateEventForm input[type="text"],
+#updateEventForm input[type="date"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#deleteEventForm input[type="submit"], #updateEventForm input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#deleteEventForm input[type="submit"] {
+    background-color: #ff4646;
 }

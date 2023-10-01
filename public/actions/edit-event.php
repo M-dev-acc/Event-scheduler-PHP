@@ -9,10 +9,16 @@ use Core\Event;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Event</title>
+
+    <link rel="stylesheet" href="./public/css/style.css">
 </head>
 <body>
-
-    <main>
+    <header class="navbar">
+        <nav class="navbar__container">
+            <h2 class="navbar__contianer--logo">Event information</h2>
+        </nav>
+    </header>
+    <main class="container">
         <?php
             $eventObject = new Event();
             $eventDataObject = null;
